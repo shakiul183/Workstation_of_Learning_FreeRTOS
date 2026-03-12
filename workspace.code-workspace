@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "I2C_communication_Multiple_slave_STM32AndESP32",
+			"path": "I2C_communication_Multiple_slave_STM32AndESP32"
+		}
+	],
+	"settings": {}
+}
