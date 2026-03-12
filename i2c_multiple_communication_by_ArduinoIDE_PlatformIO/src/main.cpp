@@ -1,18 +1,25 @@
 #include <Arduino.h>
+#include <Wire.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define STM32_ADDR 0x08
+String receivedText = "";
+
+void receiveEvent(int howMany) {
+  while (Wire.available()) {
+    char c = Wire.read();
+    receivedText += c;
+  }
+  Serial.print("Received from ESP32: ");
+  Serial.println(receivedText);
+  receivedText = "";
+}
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  Wire.begin(STM32_ADDR); // STM32 I2C Slave init
+  Wire.onReceive(receiveEvent);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  // STM32 অন্য কাজ করতে পারে এখানে
 }
